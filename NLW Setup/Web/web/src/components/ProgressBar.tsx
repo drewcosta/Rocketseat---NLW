@@ -5,10 +5,6 @@ interface ProgressBarProps{
 }
 
 export const ProgressBar = ({progress}: ProgressBarProps) => {
-    // variável separada ou direto no 'style' do componente
-    // const progressStyles = {
-    //     width: `${props.progress}%`
-    // }
 
   return (
         <div className='h-3 rounded-xl bg-zinc-700 w-full mt-4'>
