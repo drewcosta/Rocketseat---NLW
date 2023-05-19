@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,8 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// uuid -> Universal Unique ID
-
 model User {
   id        String @id @default(uuid())
   githubId  Int    @unique
@@ -19,17 +14,17 @@ model User {
   login     String
   avatarUrl String
 
-  Memories Memory[]
+  memories Memory[]
 }
 
 model Memory {
   id     String @id @default(uuid())
   userId String
 
-  coverUrl String
-  content  String
-  isPublic Boolean  @default(false)
-  createAt DateTime @default(now())
+  coverUrl  String
+  content   String
+  isPublic  Boolean  @default(false)
+  createdAt DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id])
 }
