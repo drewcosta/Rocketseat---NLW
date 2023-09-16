@@ -5,14 +5,35 @@ O evento possui uma metodologia prática para conhecer tecnologias, ferramentas 
 #
 ### NLW IA
 Projeto de desenvolvimento de um Upload AI: é uma ferramenta de upload de vídeos para o Youtube que cria automaticamente títulos, descrições e materiais para vídeo.
- - Tecnologias: Vite, React, RadixUI, shadcn/UI, TailwindCSS, Typescript, Axios, Nodejs, Prisma, Zod, Fastify e a  API da OpenAI.
+#### Tecnologias: 
+ - Vite
+ - React
+ - RadixUI
+ - shadcn/UI
+ - TailwindCSS
+ - Typescript
+ - Axios
+ - Nodejs
+ - Prisma
+ - Zod
+ - Fastify
+ - API da OpenAI.
 #
 ### NLW Setup
 Projeto de desenvolvimento de um habit tracker: é uma ferramenta de acompanhamento de hábitos para o usuário colocar em prática suas resoluções e metas, ou seja, registrar ações e acompanhar a evolução dos novos hábitos que deseja colocar na sua rotina.
- - Tecnologias: Vite, React, RadixUI, TailwindCSS, Typescript, Axios, Nodejs, Prisma e Fastify.
+#### Tecnologias: 
+ - Vite
+ - React
+ - RadixUI
+ - TailwindCSS
+ - Typescript
+ - Axios
+ - Nodejs
+ - Prisma
+ - Fastify
 #
 ### NLW Spacetime
-Projeto de desenvolvimento de um habit tracker: é uma ferramenta de acompanhamento de hábitos para o usuário colocar em prática suas resoluções e metas, ou seja, registrar ações e acompanhar a evolução dos novos hábitos que deseja colocar na sua rotina.
+Projeto de desenvolvimento de uma cápsula do Tempo.
 #### Tecnologias:
   - Nextjs
   - React
