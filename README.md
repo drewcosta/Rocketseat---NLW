@@ -48,6 +48,7 @@ Projeto de desenvolvimento de uma cápsula do Tempo.
   - JWT Decode
   - Dayjs
 #
-
+# 💻 Autores
+### [Andrew Costa](https://www.linkedin.com/in/andrew-costa-8849aa24a/) + [Rocketseat](https://www.linkedin.com/school/rocketseat/)
 
 
