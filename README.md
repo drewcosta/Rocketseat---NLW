@@ -3,6 +3,18 @@
 ### NLW é o maior evento de programaçao na prática da Rocketseat
 O evento possui uma metodologia prática para conhecer tecnologias, ferramentas e desenvolver skills técnicas. Desse modo, o objetivo do evento consiste em se dedicar durante uma semana de aulas com muito código, desafios e networking com um único objetivo: evoluir para o próximo nível.
 #
+### NLW Expert
+Projeto de desenvolvimento de um conversor automático de notas de áudio em texto.
+#### Tecnologias:
+  - Vite + React
+  - TailwindCSS
+  - Typescript
+  - SpeechRecognition API
+  - Radix UI
+  - Date fns
+  - Lucide react
+  - Sonner
+#
 ### NLW IA
 Projeto de desenvolvimento de um Upload AI: é uma ferramenta de upload de vídeos para o Youtube que cria automaticamente títulos, descrições e materiais para vídeo.
 #### Tecnologias: 
