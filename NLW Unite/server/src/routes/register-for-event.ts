@@ -1,13 +1,16 @@
 import { FastifyInstance } from "fastify";
-import { ZodTypeProvider } from 'fastify-type-provider-zod'
-import z from 'zod';
+import { ZodTypeProvider } from "fastify-type-provider-zod";
+import { z } from "zod";
 import { prisma } from "../lib/prisma";
+import { BadRequest } from "./_errors/bad-request";
 
 export async function registerForEvent(app: FastifyInstance) {
   app
     .withTypeProvider<ZodTypeProvider>()
     .post('/events/:eventId/attendees', {
       schema: {
+        summary: 'Register an attendee',
+        tags: ['attendees'],
         body: z.object({
           name: z.string().min(4),
           email: z.string().email(),
@@ -21,9 +24,9 @@ export async function registerForEvent(app: FastifyInstance) {
           })
         }
       }
-    }, async (req, reply) => {
-      const { eventId } = req.params
-      const { name, email } = req.body
+    }, async (request, reply) => {
+      const { eventId } = request.params
+      const { name, email } = request.body
 
       const attendeeFromEmail = await prisma.attendee.findUnique({
         where: {
@@ -35,7 +38,7 @@ export async function registerForEvent(app: FastifyInstance) {
       })
 
       if (attendeeFromEmail !== null) {
-        throw new Error("This e-mail is already registered for this event.")
+        throw new BadRequest('This e-mail is already registered for this event.')
       }
 
       const [event, amountOfAttendeesForEvent] = await Promise.all([
@@ -44,6 +47,7 @@ export async function registerForEvent(app: FastifyInstance) {
             id: eventId,
           }
         }),
+
         prisma.attendee.count({
           where: {
             eventId,
@@ -51,16 +55,16 @@ export async function registerForEvent(app: FastifyInstance) {
         })
       ])
 
-      if (event?.maximumAttendees && amountOfAttendeesForEvent > event?.maximumAttendees) {
-        throw new Error("The maximum number of attendees for this event has been reached.")
+      if (event?.maximumAttendees && amountOfAttendeesForEvent >= event.maximumAttendees) {
+        throw new BadRequest('The maximum number of attendees for this event has been reached.')
       }
 
       const attendee = await prisma.attendee.create({
         data: {
           name,
           email,
-          eventId
-        },
+          eventId,
+        }
       })
 
       return reply.status(201).send({ attendeeId: attendee.id })

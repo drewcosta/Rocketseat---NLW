@@ -1,14 +1,17 @@
-import { ZodTypeProvider } from 'fastify-type-provider-zod'
-import z from 'zod';
-import { generateSlug } from '../utils/generate-slug'
-import { prisma } from '../lib/prisma';
-import { FastifyInstance } from 'fastify';
+import { ZodTypeProvider } from "fastify-type-provider-zod"
+import { z } from "zod"
+import { generateSlug } from "../utils/generate-slug"
+import { prisma } from "../lib/prisma"
+import { FastifyInstance } from "fastify"
+import { BadRequest } from "./_errors/bad-request"
 
 export async function createEvent(app: FastifyInstance) {
   app
     .withTypeProvider<ZodTypeProvider>()
     .post('/events', {
       schema: {
+        summary: 'Create an event',
+        tags: ['events'],
         body: z.object({
           title: z.string().min(4),
           details: z.string().nullable(),
@@ -20,32 +23,35 @@ export async function createEvent(app: FastifyInstance) {
           })
         },
       },
-    }, async (req, reply) => {
+    }, async (request, reply) => {
+      const {
+        title,
+        details,
+        maximumAttendees,
+      } = request.body
 
-      const data = req.body;
-
-      const slug = generateSlug(data.title);
+      const slug = generateSlug(title)
 
       const eventWithSameSlug = await prisma.event.findUnique({
         where: {
-          slug: slug,
-        },
-      });
+          slug,
+        }
+      })
 
       if (eventWithSameSlug !== null) {
-        throw new Error("Another event with same slug already exists");
+        throw new BadRequest('Another event with same title already exists.')
       }
 
       const event = await prisma.event.create({
         data: {
-          title: data.title,
-          details: data.details,
-          maximumAttendees: data.maximumAttendees,
-          slug: slug,
-        }
-      });
+          title,
+          details,
+          maximumAttendees,
+          slug,
+        },
+      })
 
-      return reply.status(201).send({ eventId: event.id });
-    });
+      return reply.status(201).send({ eventId: event.id })
+    })
 }
 

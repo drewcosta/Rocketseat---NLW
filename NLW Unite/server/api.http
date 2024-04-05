@@ -6,3 +6,17 @@ Content-Type: application/json
   "details": null,
   "maximumAttendees": 1
 }
+
+###
+
+POST http://localhost:3333/events/id/attendess
+Content-Type: application/json
+
+{
+  "name": "fulando",
+  "email": "fulando@example.com"
+}
+
+###
+
+GET http://localhost:3333/events/id
