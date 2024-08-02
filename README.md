@@ -11,6 +11,12 @@ Projeto de desenvolvimento de um conversor automático de notas de áudio em tex
   - Typescript
   - Dayjs
   - Lucide react
+  - Node.js
+  - Fastify
+  - Fastify-swagger
+  - Prisma
+  - Faker-js
+  - Zod
 #
 ### NLW Expert
 Projeto de desenvolvimento de um conversor automático de notas de áudio em texto.
